@@ -1,20 +1,34 @@
 #{extends 'main.html'/}
 
 <style type="text/css">
-    .instructions { display: none; }
-    .instructions li { margin-bottom: 10px; }
-    .instructions h2 { margin: 18px 0;}
-    .instructions blockquote { margin-top: 10px; }
+    .instructions {
+        display: none;
+    }
+
+    .instructions li {
+        margin-bottom: 10px;
+    }
+
+    .instructions h2 {
+        margin: 18px 0;
+    }
+
+    .instructions blockquote {
+        margin-top: 10px;
+    }
+
     .screenshot {
         margin-top: 10px;
-        display:block;
+        display: block;
     }
+
     .screenshot a {
         padding: 0;
         line-height: 1;
         display: inline-block;
         text-decoration: none;
     }
+
     .screenshot img {
         border: 1px solid #ddd;
         -webkit-border-radius: 4px;
@@ -25,10 +39,10 @@
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
     }
 
-    .modal{
-        width:800px;
-        margin-left:-400px;
-        height:650px;
+    .modal {
+        width: 800px;
+        margin-left: -400px;
+        height: 650px;
         margin-top: -325px;
     }
 
@@ -42,7 +56,7 @@
 <script type="text/javascript">
     <!--
     function appname() {
-        return location.hostname.substring(0,location.hostname.indexOf("."));
+        return location.hostname.substring(0, location.hostname.indexOf("."));
     }
     // -->
 </script>
@@ -63,7 +77,8 @@
 </div>
 
 <ul id="tab" class="nav nav-tabs">
-    <li class="active"><a id="eclipse-instructions-tab" href="#eclipse-instructions" data-toggle="tab">Using Eclipse 3.7</a></li>
+    <li class="active"><a id="eclipse-instructions-tab" href="#eclipse-instructions" data-toggle="tab">Using Eclipse
+        3.7</a></li>
     <li><a id="cli-instructions-tab" href="#cli-instructions" data-toggle="tab">Using Command Line</a></li>
 </ul>
 
@@ -234,30 +249,37 @@
 </ol>
 
 <a name="step3" id="step3"></a>
+
 <h2>Step 3. Configure the App</h2>
 <ol>
     <li>Select the imported project</li>
-    <li>Go to <code>Run</code> <i class="icon-chevron-right"></i> <code>External Tools</code> <i class="icon-chevron-right"></i> <code>External Tools Configuration</code></li>
+    <li>Go to <code>Run</code> <i class="icon-chevron-right"></i> <code>External Tools</code> <i
+            class="icon-chevron-right"></i> <code>External Tools Configuration</code></li>
     <li>Double-click <code>Program</code></li>
     <li>Enter the following values:
         <ul>
             <li>Name: <code>Play Eclipsify</code></li>
-            <li>Location: Path to the <code>play</code> executable (or <code>play.bat</code> on Windows) in the Play directory unzipped above</li>
+            <li>Location: Path to the <code>play</code> executable (or <code>play.bat</code> on Windows) in the Play
+                directory unzipped above
+            </li>
             <li>Working Directory: <code>&#36;{project_loc}</code></li>
             <li>Arguments: <code>eclipsify</code></li>
         </ul>
         <div class="modal hide" id="playEclipsifyModal">
             <div class="modal-header">
                 <a class="close" data-dismiss="modal">x</a>
+
                 <h3>Play Eclipsify External Tool Configuration</h3>
             </div>
             <div class="modal-body">
-                <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/play/play-eclipsify-ext-tool.png" alt="Play Eclipsify External Tool Configuration" />
+                <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/play/play-eclipsify-ext-tool.png"
+                     alt="Play Eclipsify External Tool Configuration"/>
             </div>
         </div>
             <span class="screenshot">
               <a href="#playEclipsifyModal" data-toggle="modal">
-                  <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/play/play-eclipsify-ext-tool.png" alt="Play Eclipsify External Tool Configuration" width="100" />
+                  <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/play/play-eclipsify-ext-tool.png"
+                       alt="Play Eclipsify External Tool Configuration" width="100"/>
                   <i class="icon-zoom-in"></i>
               </a>
             </span>
@@ -325,24 +347,29 @@
     </li>
 </ol>
 
-    <div class="hero-unit">
-        <h1>Done!</h1>
-        <p>You've just cloned, modified, and deployed a brand new app.</p>
-        <a href="/people" class="btn btn-primary btn-large">See your changes</a>
-       
-        <p style="margin-top: 20px">Learn more at the   
+<div class="hero-unit">
+    <h1>Done!</h1>
+
+    <p>You've just cloned, modified, and deployed a brand new app.</p>
+    <a href="/people" class="btn btn-primary btn-large">See your changes</a>
+
+    <p style="margin-top: 20px">Learn more at the
         <a href="http://devcenter.heroku.com/categories/java">Heroku Dev Center</a></p>
-    </div>
-</div> <!-- End Eclipse tab-->
+</div>
+</div>
+<!-- End Eclipse tab-->
 
 <div id="cli-instructions" class="instructions tab-pane">
     <a name="using-cli"></a>
+
     <h1>Using Command Line:</h1>
 
     <h2>Step 1. Setup your environment</h2>
     <ol>
         <li>Install the <a href="http://toolbelt.heroku.com">Heroku Toolbelt</a>.</li>
-        <li><a href="http://download.playframework.org/releases/play-1.2.4.zip">Download</a> the Play framework version 1.2.4.</li>
+        <li><a href="http://download.playframework.org/releases/play-1.2.4.zip">Download</a> the Play framework version
+            1.2.4.
+        </li>
         <li>Unzip the framework and add the directory to your <code>PATH</code>.</li>
     </ol>
 
@@ -363,7 +390,9 @@ Uploading SSH public key /Users/Administrator/.ssh/id_rsa.pub
 Authentication successful.</pre>
 
     <h2>Step 3. Clone the App</h2>
-    <code>git clone -o heroku git@heroku.com:<script>document.write(appname())</script>.git</code>
+    <code>git clone -o heroku git@heroku.com:
+        <script>document.write(appname())</script>
+        .git</code>
 
     <h2>Step 4. Makes some changes to the app</h2>
     <ol>
@@ -385,13 +414,16 @@ Authentication successful.</pre>
 
     <div class="hero-unit">
         <h1>Done!</h1>
+
         <p>You've just cloned, modified, and deployed a brand new app.</p>
         <a href="/people" class="btn btn-primary btn-large">See your changes</a>
-                
-        <p style="margin-top: 20px">Learn more at the   
-        <a href="http://devcenter.heroku.com/categories/java">Heroku Dev Center</a></p>
+
+        <p style="margin-top: 20px">Learn more at the
+            <a href="http://devcenter.heroku.com/categories/java">Heroku Dev Center</a></p>
     </div>
-</div> <!-- End CLI tab -->
-</div> <!-- end tab content -->
+</div>
+<!-- End CLI tab -->
+</div>
+<!-- end tab content -->
 </div>
 </div>
