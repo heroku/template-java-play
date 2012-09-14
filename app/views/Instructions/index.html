@@ -70,183 +70,260 @@
 <div class="tab-content">
 
 <div id="eclipse-instructions" class="instructions tab-pane active">
-    <a name="using-eclipse"></a>
-    <h1>Using Eclipse 3.7:</h1>
+<a name="using-eclipse"></a>
 
-    <h2>Step 1. Setup your environment</h2>
-    <ol>
-        <li>Ensure <a href="http://unicase.blogspot.com/2011/01/egit-tutorial-for-beginners.html">EGit</a> is installed.</li>
-        <li><a href="http://download.playframework.org/releases/play-1.2.4.zip">Download</a> and upzip the Play framework version 1.2.4.</li>
-        <li>Create an SSH key if you haven't already:
-            <ol>
-                <li>Go to <code>Window</code> <i class="icon-chevron-right"></i> <code>Preferences</code> <i class="icon-chevron-right"></i> <code>General</code> <i class="icon-chevron-right"></i> <code>Network Connections</code> <i class="icon-chevron-right"></i> <code>SSH2</code></li>
-                <li>Choose the <code>Key Management</code> tab</li>
-                <li>Click <code>Generate RSA Key...</code>
-                    <div class="modal hide" id="addingSshKey">
-                        <div class="modal-header">
-                            <a class="close" data-dismiss="modal">x</a>
-                            <h3>Generate RSA Key</h3>
-                        </div>
-                        <div class="modal-body">
-                            <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/2-3-adding-ssh-key.png" alt="SSH Eclipse Preferences Window" />
-                        </div>
-                    </div>
+<div class="alert alert-warn">If you already created this app from the Heroku Eclipse Plugin, proceed to <a
+        href="#step3">Step 3</a>.
+    The following steps depends on the Heroku Eclipse plugin. If you do not have the Heroku Eclipse plugin installed and
+    configured,
+    follow a <a href="https://devcenter.heroku.com/articles/getting-started-with-heroku-eclipse#installation-and-setup"
+                target="_blank">step-by-step guide</a>
+    on Dev Center to install the plugin and
+    configure the plugin in Eclipse.
+</div>
+
+<h2>Step 1.Configure Heroku Eclipse preferences</h2>
+<ol>
+    <li>Open <code>Eclipse</code><i class="icon-chevron-right"></i><code>Preferences</code></li>
+    <li>Select <code>Heroku</code></li>
+    <li>Enter your <code>Email</code> and <code>Password</code></li>
+    <li>Click <code>Login</code>. If your login was successful, your Heroku API key would be populated in the
+        <code>API Key</code> field.<br/>
+
+        <div class="modal hide" id="apiPreferences">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+
+                <h3>Setup API Key</h3>
+            </div>
+            <div class="modal-body">
+                <img src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/heroku_preferences.png'
+                     alt="setup api key"/>
+            </div>
+        </div>
                     <span class="screenshot">
-                      <a href="#addingSshKey" data-toggle="modal">
-                          <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/2-3-adding-ssh-key.png" alt="SSH Eclipse Preferences Window" width="100" />
+                      <a href="#apiPreferences" data-toggle="modal">
+                          <img
+                                  src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/heroku_preferences.png'
+                                  alt="setup api key" width="100">
                           <i class="icon-zoom-in"></i>
                       </a>
                     </span>
-                </li>
-                <li>Copy the generated public key in the text box and <a href="https://api.heroku.com/account/ssh" class="btn btn-primary btn-mini">add it to your account</a></li>
-                <li>Click <code>Save Private Key...</code>, accepting the defaults</li>
-                <li>Click <code>Ok</code></li>
-            </ol>
-        </li>
-    </ol>
+    </li>
+    <li>In the SSH Key section, click <code>Generate</code> if you need to generate a new key.
+        If you have previously generated and saved a SSH key is automatically loaded from the default location. If it is
+        not
+        in the default location, click <code>Load SSH Key</code><br/>
+    </li>
+    <li>Click on <code>Add</code> to add your SSH Key to Heroku
+        <div class="modal hide" id="sshkeyadd">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
 
-    <h2>Step 2. Clone the App</h2>
-    <ol>
-        <li>Go to <code>File</code> <i class="icon-chevron-right"></i> <code>Import...</code> <i class="icon-chevron-right"></i> <code>Git</code> <i class="icon-chevron-right"></i> <code>Projects from Git</code>
-            <div class="modal hide" id="importFromGit">
-                <div class="modal-header">
-                    <a class="close" data-dismiss="modal">x</a>
-                    <h3>Import</h3>
-                </div>
-                <div class="modal-body">
-                    <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/2-1-import.png" alt="Import" />
-                </div>
+                <h3>Add SSH Key to Heroku</h3>
             </div>
-                <span class="screenshot">
-                  <a href="#importFromGit" data-toggle="modal">
-                      <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/2-1-import.png" alt="Import" width="100" />
-                      <i class="icon-zoom-in"></i>
-                  </a>
-                </span>
-        </li>
-        <li>Choose <code>URI</code> and click <code>Next</code></li>
-        <li>Enter <code>git@heroku.com:<script>document.write(appname());</script>.git</code> in the <code>URI</code> field.
-            <div class="modal hide" id="cloneGitRepository">
-                <div class="modal-header">
-                    <a class="close" data-dismiss="modal">x</a>
-                    <h3>Clone Git Repository</h3>
-                </div>
-                <div class="modal-body">
-                    <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/3-4-clone-git-repo.png" alt="Clone Git Repository" />
-                </div>
+            <div class="modal-body">
+                <img src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/heroku_ssh_add.png'
+                     alt="Add SSH Key to Heroku"/>
             </div>
-                <span class="screenshot">
-                  <a href="#cloneGitRepository" data-toggle="modal">
-                      <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/3-4-clone-git-repo.png" alt="Clone Git Repository" width="100" />
-                      <i class="icon-zoom-in"></i>
-                  </a>
-                </span>
-        </li>
-        <li>Click <code>Next</code> three times
-            <blockquote>
-                Click <code>Yes</code> to the question of authenticity if the question appears.
-            </blockquote>
-        </li>
-        <li>Choose <code>Import as general project</code>
-            <div class="modal hide" id="importProjectsFromGit">
-                <div class="modal-header">
-                    <a class="close" data-dismiss="modal">x</a>
-                    <h3>Import Projects from Git</h3>
-                </div>
-                <div class="modal-body">
-                    <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/2-6-import-general.png" alt="Import Projects from Git" />
-                </div>
-            </div>
-                <span class="screenshot">
-                  <a href="#importProjectsFromGit" data-toggle="modal">
-                      <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/2-6-import-general.png" alt="Import Projects from Git" width="100" />
-                      <i class="icon-zoom-in"></i>
-                  </a>
-                </span>
-        </li>
-        <li>Click <code>Finish</code></li>
-    </ol>
+        </div>
+	                    <span class="screenshot">
+	                      <a href="#sshkeyadd" data-toggle="modal">
+                              <img
+                                      src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/heroku_ssh_add.png'
+                                      alt="Add SSH Key to Heroku" width="100"/>
+                              <i class="icon-zoom-in"></i>
+                          </a>
+	                    </span>
+    </li>
+</ol>
 
-    <h2>Step 3. Configure the App</h2>
-    <ol>
-        <li>Select the imported project</li>
-        <li>Go to <code>Run</code> <i class="icon-chevron-right"></i> <code>External Tools</code> <i class="icon-chevron-right"></i> <code>External Tools Configuration</code></li>
-        <li>Double-click <code>Program</code></li>
-        <li>Enter the following values:
-            <ul>
-                <li>Name: <code>Play Eclipsify</code></li>
-                <li>Location: Path to the <code>play</code> executable (or <code>play.bat</code> on Windows) in the Play directory unzipped above</li>
-                <li>Working Directory: <code>&#36;{project_loc}</code></li>
-                <li>Arguments: <code>eclipsify</code></li>
-            </ul>
-            <div class="modal hide" id="playEclipsifyModal">
-                <div class="modal-header">
-                    <a class="close" data-dismiss="modal">x</a>
-                    <h3>Play Eclipsify External Tool Configuration</h3>
-                </div>
-                <div class="modal-body">
-                    <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/play/play-eclipsify-ext-tool.png" alt="Play Eclipsify External Tool Configuration" />
-                </div>
+<h2>Step 2. Importing this App</h2>
+<ol>
+    <li>Open <code>File</code><i class="icon-chevron-right"></i><code>Import</code> and expand the Heroku section
+        <div class="modal hide" id="importAppSelect">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+
+                <h3>Import App</h3>
             </div>
+            <div class="modal-body">
+                <img src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/import_app_1.png'
+                     alt="Import App"/>
+            </div>
+        </div>
+	                    <span class="screenshot">
+	                      <a href="#importAppSelect" data-toggle="modal">
+                              <img
+                                      src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/import_app_1.png'
+                                      alt="Import App" width="100"/>
+                              <i class="icon-zoom-in"></i>
+                          </a>
+	                    </span>
+
+    </li>
+    <li>Select <code>Existing Heroku Application</code><i class="icon-chevron-right"></i><code>Next</code></li>
+    <li>Select <code>
+        <script>document.write(appname());</script>
+    </code> and click <code>Next</code>
+
+        <div class="modal hide" id="importApp2">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+
+                <h3>Select App to import</h3>
+            </div>
+            <div class="modal-body">
+                <img src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/import_app_2.png'
+                     alt="Create app from template"/>
+            </div>
+        </div>
+	                    <span class="screenshot">
+	                      <a href="#importApp2" data-toggle="modal">
+                              <img
+                                      src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/import_app_2.png'
+                                      alt="Create app from template" width="100"/>
+                              <i class="icon-zoom-in"></i>
+                          </a>
+	                    </span>
+    </li>
+    <li>Choose <code>Import as General Project</code>
+
+        <div class="modal hide" id="importApp3">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+
+                <h3>Project Type selection</h3>
+            </div>
+            <div class="modal-body">
+                <img src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/import_app_3_general.png'
+                     alt="Project Type selection"/>
+            </div>
+        </div>
+	                    <span class="screenshot">
+	                      <a href="#importApp3" data-toggle="modal">
+                              <img
+                                      src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/import_app_3_general.png'
+                                      alt="Project Type selection" width="100"/>
+                              <i class="icon-zoom-in"></i>
+                          </a>
+	                    </span>
+    </li>
+    <li>Click <code>Finish</code> to complete the import. The plugin will use <a href="http://www.eclipse.org/egit/">eGit</a>
+        and clone the source code repository to a local Git repository.
+        <div class="modal hide" id="importApp4">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+
+                <h3>Local Project and Git Repository</h3>
+            </div>
+            <div class="modal-body">
+                <img src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/create_app_template_4.png'
+                     alt="Local Project and Git Repository"/>
+            </div>
+        </div>
+	                    <span class="screenshot">
+	                      <a href="#importApp4" data-toggle="modal">
+                              <img
+                                      src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/create_app_template_4.png'
+                                      alt="Local Project and Git Repository" width="100"/>
+                              <i class="icon-zoom-in"></i>
+                          </a>
+	                    </span>
+    </li>
+</ol>
+
+<a name="step3" id="step3"></a>
+<h2>Step 3. Configure the App</h2>
+<ol>
+    <li>Select the imported project</li>
+    <li>Go to <code>Run</code> <i class="icon-chevron-right"></i> <code>External Tools</code> <i class="icon-chevron-right"></i> <code>External Tools Configuration</code></li>
+    <li>Double-click <code>Program</code></li>
+    <li>Enter the following values:
+        <ul>
+            <li>Name: <code>Play Eclipsify</code></li>
+            <li>Location: Path to the <code>play</code> executable (or <code>play.bat</code> on Windows) in the Play directory unzipped above</li>
+            <li>Working Directory: <code>&#36;{project_loc}</code></li>
+            <li>Arguments: <code>eclipsify</code></li>
+        </ul>
+        <div class="modal hide" id="playEclipsifyModal">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal">x</a>
+                <h3>Play Eclipsify External Tool Configuration</h3>
+            </div>
+            <div class="modal-body">
+                <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/play/play-eclipsify-ext-tool.png" alt="Play Eclipsify External Tool Configuration" />
+            </div>
+        </div>
             <span class="screenshot">
               <a href="#playEclipsifyModal" data-toggle="modal">
                   <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/play/play-eclipsify-ext-tool.png" alt="Play Eclipsify External Tool Configuration" width="100" />
                   <i class="icon-zoom-in"></i>
               </a>
             </span>
-        </li>
-        <li>Click <code>Run</code></li>
-        <li>Select the project and choose <code>File</code> <i class="icon-chevron-right"></i> <code>Refresh</code></li>
-    </ol>
+    </li>
+    <li>Click <code>Run</code></li>
+    <li>Select the project and choose <code>File</code> <i class="icon-chevron-right"></i> <code>Refresh</code></li>
+</ol>
 
-    <h2>Step 4. Makes some changes to the app</h2>
-    <ol>
-        <li>Open <code>app/controllers/People.java</code> and locate the <code>index()</code> method.</li>
-        <li>To sort the person records by last name, change
-            <code>Person.findAll()</code> to <code>Person.find("ORDER BY lastName").fetch()</code>
-        </li>
-        <li>Save the file.</li>
-    </ol>
+<h2>Step 4. Makes some changes to the app</h2>
+<ol>
+    <li>Open <code>app/controllers/People.java</code> and locate the <code>index()</code> method.</li>
+    <li>To sort the person records by last name, change
+        <code>Person.findAll()</code> to <code>Person.find("ORDER BY lastName").fetch()</code>
+    </li>
+    <li>Save the file.</li>
+</ol>
 
-    <h2>Step 5. Deploy to Heroku</h2>
-    <ol>
-        <li>Right-click the project root and choose <code>Team</code> <i class="icon-chevron-right"></i> <code>Commit</code></li>
-        <li>Enter a commit message and click <code>Commit</code>
-            <div class="modal hide" id="commitChanges">
-                <div class="modal-header">
-                    <a class="close" data-dismiss="modal">x</a>
-                    <h3>Commit Changes</h3>
-                </div>
-                <div class="modal-body">
-                    <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/6-5-commit.png" alt="Commit Changes" />
-                </div>
+<h2>Step 5. Deploy to Heroku</h2>
+<ol>
+    <li>Right-click the project root and choose <code>Team</code> <i class="icon-chevron-right"></i> <code>Commit</code>
+    </li>
+    <li>Enter a commit message and click <code>Commit</code>
+
+        <div class="modal hide" id="commitChanges">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+
+                <h3>Commit Changes</h3>
             </div>
+            <div class="modal-body">
+                <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/6-5-commit.png"
+                     alt="Commit Changes"/>
+            </div>
+        </div>
                 <span class="screenshot">
                   <a href="#commitChanges" data-toggle="modal">
-                      <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/6-5-commit.png" alt="Commit Changes" width="100" />
+                      <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/6-5-commit.png"
+                           alt="Commit Changes" width="100"/>
                       <i class="icon-zoom-in"></i>
                   </a>
                 </span>
-        </li>
-        <li>Right-click the project root and choose <code>Team</code> <i class="icon-chevron-right"></i> <code>Push to Upstream</code></li>
-        <li>Review the push results. At the bottom, a "... deployed to Heroku" message will appear.
-            <div class="modal hide" id="pushResults">
-                <div class="modal-header">
-                    <a class="close" data-dismiss="modal">x</a>
-                    <h3>Push Results</h3>
-                </div>
-                <div class="modal-body">
-                    <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/6-8-push-result.png" alt="Push Results" />
-                </div>
+    </li>
+    <li>Right-click the project root and choose <code>Team</code> <i class="icon-chevron-right"></i> <code>Push to
+        Upstream</code></li>
+    <li>Review the push results. At the bottom, a "... deployed to Heroku" message will appear.
+        <div class="modal hide" id="pushResults">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+
+                <h3>Push Results</h3>
             </div>
+            <div class="modal-body">
+                <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/6-8-push-result.png"
+                     alt="Push Results"/>
+            </div>
+        </div>
                 <span class="screenshot">
                   <a href="#pushResults" data-toggle="modal">
-                      <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/6-8-push-result.png" alt="Push Results" width="100" />
+                      <img
+                              src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/6-8-push-result.png"
+                              alt="Push Results" width="100"/>
                       <i class="icon-zoom-in"></i>
                   </a>
                 </span>
-        </li>
-    </ol>
+    </li>
+</ol>
 
     <div class="hero-unit">
         <h1>Done!</h1>
